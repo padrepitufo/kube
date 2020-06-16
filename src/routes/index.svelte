@@ -44,7 +44,11 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-<h1>{name}</h1>
-<figure>
-  <img alt="Success Kid" src="successkid.jpg" />
-</figure>
+{#if name}
+  <h1>{name}</h1>
+  <figure>
+    <img alt="Success Kid" src="successkid.jpg" />
+  </figure>
+{:else}
+  <p>Loading...</p>
+{/if}
