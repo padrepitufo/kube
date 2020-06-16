@@ -1,22 +1,17 @@
-<script context="module">
-  export async function preload(page, session) {
-    let response = await this.fetch("/.netlify/functions/name");
-
-    let data = await response.json();
-    console.log({ data });
-
-    return { data };
-  }
-</script>
-
 <script>
-  export let data;
+  import { onMount } from "svelte";
+  let name;
+  onMount(async () => {
+    console.log("onMount");
+    let response = await fetch("/.netlify/functions/name");
+    console.log();
+    ({ name } = await response.json());
+  });
 </script>
 
 <style>
   h1,
-  figure,
-  p {
+  figure {
     text-align: center;
     margin: 0 auto;
   }
@@ -38,10 +33,6 @@
     margin: 0 0 1em 0;
   }
 
-  p {
-    margin: 1em auto;
-  }
-
   @media (min-width: 480px) {
     h1 {
       font-size: 4em;
@@ -53,7 +44,7 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-<h1>{data.name}</h1>
+<h1>{name}</h1>
 <figure>
   <img alt="Success Kid" src="successkid.jpg" />
 </figure>
