@@ -16,8 +16,6 @@ exports.handler = async (event) => {
 
     }
 
-    console.log(type, words, alliterative, number)
-
     let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers':

@@ -1,12 +1,16 @@
+<script context="module">
+  export async function preload(page, session) {
+    let response = await this.fetch("/.netlify/functions/name");
+
+    let data = await response.json();
+    console.log({ data });
+
+    return { data };
+  }
+</script>
+
 <script>
-  let fetchName = (async () => {
-    let response = await fetch("/.netlify/functions/name");
-
-    let json = await response.json();
-    console.log({ json });
-
-    return json;
-  })();
+  export let data;
 </script>
 
 <style>
@@ -49,13 +53,7 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-{#await fetchName}
-  loading name...
-{:then data}
-  <h1>{data.name}</h1>
-  <figure>
-    <img alt="Success Kid" src="successkid.jpg" />
-  </figure>
-{:catch error}
-  <p>Failed to load function</p>
-{/await}
+<h1>{data.name}</h1>
+<figure>
+  <img alt="Success Kid" src="successkid.jpg" />
+</figure>
