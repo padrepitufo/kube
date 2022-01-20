@@ -1,12 +1,14 @@
 <script>
   import { onMount } from "svelte";
   let name;
+  const sizes = [100, 200, 300, 400, 500]
+  const choice = (things) => things[Math.floor(Math.random() * things.length)];
   onMount(async () => {
     console.log("onMount");
     let response = await fetch("/.netlify/functions/name");
-    console.log(`wait what is ${response}`);
     ({ name } = await response.json());
   });
+  const src = `https://picsum.photos/${choice(sizes)}/${choice(sizes)}`
 </script>
 
 <style>
@@ -41,14 +43,14 @@
 </style>
 
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Wait so you're here but not sure why?</title>
 </svelte:head>
 
 {#if name}
   <h1>{name}</h1>
   <figure>
-    <img alt="Success Kid" src="successkid.jpg" />
+    <img alt={name} src />
   </figure>
 {:else}
-  <p>Loading...</p>
+  <p>Loading something awesome...</p>
 {/if}
