@@ -49,7 +49,7 @@
 {#if name}
   <h1>{name}</h1>
   <figure>
-    <img alt={name} src />
+    <img alt={name} {src} />
   </figure>
 {:else}
   <p>Loading something awesome...</p>
