@@ -4,7 +4,7 @@
   onMount(async () => {
     console.log("onMount");
     let response = await fetch("/.netlify/functions/name");
-    console.log();
+    console.log(`wait what is ${response}`);
     ({ name } = await response.json());
   });
 </script>
